@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:paddingBottom="32dp">
+
+    <TextView
+        android:id="@+id/add_subject_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEW SUBJECT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/tomato"
+        android:layout_margin="32dp"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/new_subject_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name of new subject"
+        app:layout_constraintTop_toBottomOf="@id/add_subject_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="32dp"
+        android:textColor="@color/grey"
+        android:layout_marginTop="32dp"/>
+
+    <View
+        android:id="@+id/separator_line"
+        android:layout_width="350dp"
+        android:layout_height="4dp"
+        android:background="@color/tomato"
+        app:layout_constraintBottom_toBottomOf="@id/new_subject_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/create_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREATE"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/cancel_button"
+        app:layout_constraintTop_toBottomOf="@id/separator_line"
+        android:backgroundTint="@color/tomato"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:textSize="32dp"
+        app:layout_constraintStart_toEndOf="@id/create_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator_line"
+        android:backgroundTint="@color/tomato"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/tomato"
+    android:paddingBottom="32dp">
+
+    <ImageView
+        android:id="@+id/config_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/settings_image"/>
+
+    <ImageView
+        android:id="@+id/add_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/add_image"/>
+
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile"
+        android:textSize="50dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/timer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toEndOf="@id/subject"
+        app:layout_constraintTop_toTopOf="@id/subject"
+        app:layout_constraintBottom_toBottomOf="@id/subject"
+        android:src="@drawable/dropdown_arrow_button"
+        android:layout_margin="0dp"/>
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="100dp"
+        android:layout_margin="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/button_start"
+        android:layout_width="256dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_pause"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="32dp"
+        android:backgroundTint="@color/white"
+        android:text="START"
+        android:textColor="@color/tomato"
+        android:textSize="32dp"/>
+
+    <Button
+        android:id="@+id/button_pause"
+        android:layout_width="256dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_end"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="32dp"
+        android:backgroundTint="@color/white"
+        android:text="PAUSE"
+        android:textColor="@color/tomato"
+        android:textSize="32dp"/>
+
+    <Button
+        android:id="@+id/button_end"
+        android:layout_width="256dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="32dp"
+        android:backgroundTint="@color/white"
+        android:text="END"
+        android:textColor="@color/tomato"
+        android:textSize="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
