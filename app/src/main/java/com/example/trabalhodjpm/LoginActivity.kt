@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
         else if (p0.id == R.id.sign_up_button) {
             var dialog = SignInFragment()
-            dialog.show(supportFragmentManager, "customDialog")
+            dialog.show(supportFragmentManager, "signInDialog")
         }
     }
 }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "150265670022",
+    "project_id": "pomoadoro-5ba68",
+    "storage_bucket": "pomoadoro-5ba68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150265670022:android:97bc4c67c20fbf25be2407",
+        "android_client_info": {
+          "package_name": "com.example.trabalhodjpm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150265670022-dmdr995764hba8vm73g5sdqh331fdbf9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trabalhodjpm",
+            "certificate_hash": "958e67fc0741a44eae0da358bfa181b98e01541a"
+          }
+        },
+        {
+          "client_id": "150265670022-amk38bksrhjo6g3hund9gbbe9d4otd06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI6aCPdhc2SpUrdwxGjSrwj1lBmVmrE1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150265670022-amk38bksrhjo6g3hund9gbbe9d4otd06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

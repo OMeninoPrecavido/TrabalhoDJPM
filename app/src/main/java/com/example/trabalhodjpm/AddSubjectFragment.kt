@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.DialogFragment
 
 class AddSubjectFragment : DialogFragment() {
@@ -17,4 +18,20 @@ class AddSubjectFragment : DialogFragment() {
 
         return rootView
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val btnCreate = view.findViewById<Button>(R.id.create_button)
+        val btnCancel = view.findViewById<Button>(R.id.cancel_button)
+
+        btnCreate.setOnClickListener {
+            dismiss()
+        }
+
+        btnCancel.setOnClickListener {
+            dismiss()
+        }
+    }
+
 }
