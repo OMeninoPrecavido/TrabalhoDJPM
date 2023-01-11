@@ -34,25 +34,27 @@
         android:id="@+id/new_login"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="New Log In"
+        android:hint="New Log In"
         app:layout_constraintTop_toBottomOf="@id/separator_line"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="32dp"
-        android:textColor="@color/grey"
-        android:layout_marginTop="32dp"/>
+        android:textColorHint="@color/grey"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/new_password"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="New Password"
+        android:hint="New Password"
         app:layout_constraintTop_toBottomOf="@id/new_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="32dp"
-        android:textColor="@color/grey"
-        android:layout_marginTop="16dp"/>
+        android:textColorHint="@color/grey"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/create_button"

@@ -12,6 +12,8 @@ import androidx.fragment.app.DialogFragment
 import com.example.trabalhodjpm.databinding.ActivityLoginBinding
 import com.example.trabalhodjpm.databinding.SignInWindowBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class SignInFragment : DialogFragment() {
 
@@ -25,6 +27,7 @@ class SignInFragment : DialogFragment() {
     }
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database : DatabaseReference
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,16 +45,22 @@ class SignInFragment : DialogFragment() {
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(){
                     if (it.isSuccessful) {
+
                         dismiss()
                         Toast.makeText(this.activity, "Account succesfully created.", Toast.LENGTH_SHORT).show()
+                        database = FirebaseDatabase.getInstance().getReference("Users")
+                        val id = firebaseAuth.currentUser?.uid.toString()
+                        val user = User(id)
+                        database.child(email).setValue(user)
+
                     } else {
-                        Toast.makeText(this.activity, "An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this.activity, "1An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
                         dismiss()
                     }
                 }
             } else {
                 dismiss()
-                Toast.makeText(this.activity, "An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.activity, "2An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
             }
         }
 

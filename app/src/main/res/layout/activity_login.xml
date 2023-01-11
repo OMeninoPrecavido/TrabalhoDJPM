@@ -41,10 +41,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="64dp"
         android:background="@color/white"
-        android:text="Login"
+        android:hint="Login"
         android:textAlignment="center"
         android:textSize="25dp"
-        android:textColor="@color/grey"/>
+        android:textColorHint="@color/grey"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/password_box"
@@ -56,10 +57,11 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="64dp"
         android:background="@color/white"
-        android:text="Password"
+        android:hint="Password"
         android:textAlignment="center"
         android:textSize="25dp"
-        android:textColor="@color/grey"/>
+        android:textColorHint="@color/grey"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/login_button"
