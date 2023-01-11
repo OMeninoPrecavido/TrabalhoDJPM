@@ -7,10 +7,15 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import com.example.trabalhodjpm.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding : ActivityMainBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +24,29 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.configButton.setOnClickListener(this)
         binding.addButton.setOnClickListener(this)
+
+        var currUserSubjList : MutableList<Subject>
+
+        val id = firebaseAuth.currentUser?.uid.toString()
+
+        database = FirebaseDatabase.getInstance().getReference("Users")
+        database.child(id).get().addOnSuccessListener {
+
+            if (it.exists()) {
+
+                currUserSubjList = it.child("subjectList")
+
+            } else {
+
+                Toast.makeText(this, "Account not found.", Toast.LENGTH_SHORT).show()
+
+            }
+
+        }.addOnFailureListener{
+
+            Toast.makeText(this, "Failed to reach account.", Toast.LENGTH_SHORT).show()
+
+        }
     }
 
     override fun onClick(p0: View) {

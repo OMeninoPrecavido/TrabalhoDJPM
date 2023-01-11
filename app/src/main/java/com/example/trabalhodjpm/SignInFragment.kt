@@ -45,14 +45,12 @@ class SignInFragment : DialogFragment() {
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(){
                     if (it.isSuccessful) {
-
                         dismiss()
                         Toast.makeText(this.activity, "Account succesfully created.", Toast.LENGTH_SHORT).show()
                         database = FirebaseDatabase.getInstance().getReference("Users")
                         val id = firebaseAuth.currentUser?.uid.toString()
                         val user = User(id)
-                        database.child(email).setValue(user)
-
+                        database.child(id).setValue(user)
                     } else {
                         Toast.makeText(this.activity, "1An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
                         dismiss()

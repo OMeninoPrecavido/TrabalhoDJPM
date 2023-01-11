@@ -24,12 +24,13 @@
         android:id="@+id/new_subject_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name of new subject"
         app:layout_constraintTop_toBottomOf="@id/add_subject_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="32dp"
-        android:textColor="@color/grey"
+        android:hint="Name of new subject"
+        android:textColorHint="@color/grey"
+        android:textColor="@color/black"
         android:layout_marginTop="32dp"/>
 
     <View
