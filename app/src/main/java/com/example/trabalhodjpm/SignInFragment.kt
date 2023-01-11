@@ -43,6 +43,7 @@ class SignInFragment : DialogFragment() {
                 firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(){
                     if (it.isSuccessful) {
                         dismiss()
+                        Toast.makeText(this.activity, "Account succesfully created.", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this.activity, "An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
                         dismiss()
