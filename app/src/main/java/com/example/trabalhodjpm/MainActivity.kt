@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+
         binding.configButton.setOnClickListener(this)
         binding.addButton.setOnClickListener(this)
-
-        var currUserSubjList : MutableList<Subject>
 
         val id = firebaseAuth.currentUser?.uid.toString()
 
@@ -34,7 +34,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             if (it.exists()) {
 
-                currUserSubjList = it.child("subjectList")
+                it.child("subjectList").children.forEach{
+
+                    val shortRest = it.child("shortRest").value
+                    val longRest = it.child("longRest").value
+                    val studyTime = it.child("studyTime").value
+                    val name = it.child("name").value.toString()
+
+                    Controller.Companion.currUserSubjList.add(Subject("Mobile", 0, 0, 0, 0))
+                    println(Controller.Companion.currUserSubjList[0].name)
+
+                }
 
             } else {
 
