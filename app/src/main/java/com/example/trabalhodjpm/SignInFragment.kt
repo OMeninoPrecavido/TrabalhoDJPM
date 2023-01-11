@@ -6,7 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.trabalhodjpm.databinding.ActivityLoginBinding
+import com.example.trabalhodjpm.databinding.SignInWindowBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class SignInFragment : DialogFragment() {
 
@@ -19,19 +24,38 @@ class SignInFragment : DialogFragment() {
         return rootView
     }
 
+    private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        firebaseAuth = FirebaseAuth.getInstance()
 
         val btnCreate = view.findViewById<Button>(R.id.create_button)
         val btnCancel = view.findViewById<Button>(R.id.cancel_button)
 
         btnCreate.setOnClickListener {
-            dismiss()
+
+            val email = view.findViewById<EditText>(R.id.new_login).text.toString()
+            val pass = view.findViewById<EditText>(R.id.new_password).text.toString()
+
+            if (email.isNotEmpty() && pass.isNotEmpty()) {
+                firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(){
+                    if (it.isSuccessful) {
+                        dismiss()
+                    } else {
+                        Toast.makeText(this.activity, "An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
+                        dismiss()
+                    }
+                }
+            } else {
+                dismiss()
+                Toast.makeText(this.activity, "An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         btnCancel.setOnClickListener {
             dismiss()
         }
     }
-
 }
