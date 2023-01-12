@@ -3,6 +3,7 @@ package com.example.trabalhodjpm
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
@@ -13,12 +14,16 @@ import com.example.trabalhodjpm.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database : DatabaseReference
+
+    //Inicializar variaveis do timer
+    lateinit var timer: CountDownTimer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +35,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.configButton.setOnClickListener(this)
         binding.addButton.setOnClickListener(this)
+        binding.buttonStart.setOnClickListener(this)
+        binding.buttonPause.setOnClickListener(this)
+        binding.buttonEnd.setOnClickListener(this)
+
 
         val id = firebaseAuth.currentUser?.uid.toString()
 
@@ -78,6 +87,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
         }
+
+        //Processos do timer
+        val time = ObtainTime()
+        timer = object : CountDownTimer(time.toLong(),  1_000){
+            override fun onTick(remaining: Long) {
+                var tempoFormated = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(remaining), TimeUnit.MILLISECONDS.toSeconds(remaining) % TimeUnit.MINUTES.toSeconds(1))
+                binding.timer.text = tempoFormated
+            }
+
+            override fun onFinish() {
+                binding.timer.text = "Done!"
+            }
+
+        }
+
+    }
+
+    private fun ObtainTime(): Long {
+        var tempo = 0
+
+        Controller.currUserSubjList.forEach{
+            if()
+        }
+
+        return
     }
 
     override fun onClick(p0: View) {
@@ -87,6 +121,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         else if (p0.id == R.id.add_button) {
             var dialog = AddSubjectFragment()
             dialog.show(supportFragmentManager, "customDialog")
+        }else if(p0.id == R.id.button_start){
+            timer.start()
+            println("ola")
+        }else if(p0.id == R.id.button_end){
+
+        }else if(p0.id == R.id.button_pause){
+
         }
     }
 
