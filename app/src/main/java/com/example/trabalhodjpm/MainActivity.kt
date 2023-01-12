@@ -45,14 +45,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 //Pega o que está na database e adiciona à lista em Controller.
                 it.child("subjectList").children.forEach{
 
-                    val shortRest = it.child("shortRest").value
-                    val longRest = it.child("longRest").value
-                    val studyTime = it.child("studyTime").value
+                    val shortRest = it.child("shortRest").value.toString().toInt()
+                    val longRest = it.child("longRest").value.toString().toInt()
+                    val studyTime = it.child("studyTime").value.toString().toInt()
                     val name = it.child("name").value.toString()
 
-                    Controller.Companion.currUserSubjList.add(Subject(name, 0, 0, 0, 0))
+                    Controller.Companion.currUserSubjList.add(Subject(name, shortRest, longRest, studyTime, 0))
                     Controller.Companion.dropDownArray.add(name)
                 }
+
 
             } else {
 
