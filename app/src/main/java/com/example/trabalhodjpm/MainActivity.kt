@@ -134,7 +134,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             time = ObtainTime()
             timer.start()
         }else if(p0.id == R.id.button_end){
-
+            timer.cancel()
+            
         }else if(p0.id == R.id.button_pause){
 
         }
