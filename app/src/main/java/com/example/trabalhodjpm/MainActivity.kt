@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.get
 import com.example.trabalhodjpm.databinding.ActivityMainBinding
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     //Inicializar variaveis do timer
     lateinit var timer: CountDownTimer
     var time = 0
+    var pause = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,11 +95,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.subject.text = Controller.Companion.currSubject
 
         //Processos do timer
-        time = ObtainTime()
+        ObtainTime()
         timer = object : CountDownTimer(time.toLong(),  1_000){
             override fun onTick(remaining: Long) {
                 var tempoFormated = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(remaining), TimeUnit.MILLISECONDS.toSeconds(remaining) % TimeUnit.MINUTES.toSeconds(1))
                 binding.timer.text = tempoFormated
+                time = remaining.toInt()
             }
 
             override fun onFinish() {
@@ -108,20 +111,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun ObtainTime(): Int {
-        var tempo = 0
+    private fun ObtainTime() {
+
 
         Controller.Companion.currUserSubjList.forEach{
             if(it.name == Controller.Companion.currSubject){
-                tempo = it.studyTime
+                time = it.studyTime
             }
         }
-        tempo = TimeUnit.MINUTES.toMillis(tempo.toLong()).toInt()
+        time = TimeUnit.MINUTES.toMillis(time.toLong()).toInt()
 
-        return tempo
+
     }
-
-
 
     override fun onClick(p0: View) {
         if (p0.id == R.id.config_button) {
@@ -131,13 +132,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             var dialog = AddSubjectFragment()
             dialog.show(supportFragmentManager, "customDialog")
         }else if(p0.id == R.id.button_start){
-            time = ObtainTime()
+            if(pause == true){pause = false}
+                else{ObtainTime()}
+            println(time)
             timer.start()
         }else if(p0.id == R.id.button_end){
+            time = 0
             timer.cancel()
-            
         }else if(p0.id == R.id.button_pause){
-
+            timer.cancel()
+            pause = true
         }
     }
 
