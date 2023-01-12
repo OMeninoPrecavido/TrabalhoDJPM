@@ -6,6 +6,8 @@ class Controller {
 
         var currUserSubjList : MutableList<Subject> = mutableListOf()
 
+        var dropDownArray = ArrayList<String>()
+
     }
 
 }

@@ -24,27 +24,28 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/add_image"/>
 
-    <TextView
-        android:id="@+id/subject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mobile"
-        android:textSize="50dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/timer"
+    <Spinner
+        android:id="@+id/dropdown_menu"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center_horizontal"
-        android:textColor="@color/black"/>
+        app:layout_constraintBottom_toTopOf="@id/timer"
+        android:background="@color/white"
+        android:textAlignment="center"/>
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        app:layout_constraintStart_toEndOf="@id/subject"
-        app:layout_constraintTop_toTopOf="@id/subject"
-        app:layout_constraintBottom_toBottomOf="@id/subject"
-        android:src="@drawable/dropdown_arrow_button"
-        android:layout_margin="0dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/subject"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Mobile"-->
+<!--        android:textSize="50dp"-->
+<!--        android:layout_margin="16dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/timer"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:textColor="@color/black"/>-->
 
     <TextView
         android:id="@+id/timer"

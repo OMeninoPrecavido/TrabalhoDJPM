@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.get
 import com.example.trabalhodjpm.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -19,10 +22,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.configButton.setOnClickListener(this)
         binding.addButton.setOnClickListener(this)
@@ -34,6 +38,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             if (it.exists()) {
 
+                //Limpa-se as listas para que não aumentem sempre que se entrar na Main Activity.
+                Controller.Companion.currUserSubjList.clear()
+                Controller.Companion.dropDownArray.clear()
+
+                //Pega o que está na database e adiciona à lista em Controller.
                 it.child("subjectList").children.forEach{
 
                     val shortRest = it.child("shortRest").value
@@ -41,9 +50,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val studyTime = it.child("studyTime").value
                     val name = it.child("name").value.toString()
 
-                    Controller.Companion.currUserSubjList.add(Subject("Mobile", 0, 0, 0, 0))
-                    println(Controller.Companion.currUserSubjList[0].name)
-
+                    Controller.Companion.currUserSubjList.add(Subject(name, 0, 0, 0, 0))
+                    Controller.Companion.dropDownArray.add(name)
                 }
 
             } else {
@@ -55,6 +63,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }.addOnFailureListener{
 
             Toast.makeText(this, "Failed to reach account.", Toast.LENGTH_SHORT).show()
+
+        }
+
+        //Código para o funcionamento do dropdown menu.
+        val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Controller.Companion.dropDownArray)
+        binding.dropdownMenu.adapter = arrayAdapter
+        binding.dropdownMenu.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
 
         }
     }
@@ -73,6 +94,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var x1 : Float = 0F
     private var x2 : Float = 0F
 
+    //Código da navegação por swipe
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         when (event.action) {
