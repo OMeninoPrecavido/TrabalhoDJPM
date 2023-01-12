@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.dropdownMenu.adapter = arrayAdapter
         binding.dropdownMenu.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+                Controller.Companion.currSubject = binding.dropdownMenu.selectedItem.toString()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
+<<<<<<< HEAD
         //Processos do timer
         val time = ObtainTime()
         timer = object : CountDownTimer(time.toLong(),  1_000){
@@ -112,6 +113,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         return
+=======
+        binding.subject.text = Controller.Companion.currSubject
+>>>>>>> new_changes
     }
 
     override fun onClick(p0: View) {

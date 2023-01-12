@@ -8,6 +8,8 @@ class Controller {
 
         var dropDownArray = ArrayList<String>()
 
+        var currSubject : String = ""
+
     }
 
 }
