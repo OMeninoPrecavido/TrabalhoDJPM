@@ -3,19 +3,33 @@ package com.example.trabalhodjpm
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.controls.Control
 import android.view.MotionEvent
+import com.example.trabalhodjpm.databinding.ActivityHistoryBinding
+import com.example.trabalhodjpm.databinding.ActivityMainBinding
 
 class HistoryActivity : AppCompatActivity() {
 
+    private lateinit var binding : ActivityHistoryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_history)
+
+        binding = ActivityHistoryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        Controller.Companion.currUserSubjList.forEach {
+            if (it.name == Controller.Companion.currSubject) {
+                binding.noOfTomatosText.text = it.noOfTomatos.toString()
+            }
+        }
     }
 
-    //Valores usados pela função onTouchEvent()
+    //Valores usados pela função onTouchEvent().
     private var x1 : Float = 0F
     private var x2 : Float = 0F
 
+    //Evento de Swipe.
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         when (event.action) {

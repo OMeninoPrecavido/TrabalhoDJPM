@@ -38,7 +38,7 @@
         android:id="@+id/subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mobile"
+        android:text="Click me"
         android:textSize="50dp"
         android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@id/dropdown_menu"

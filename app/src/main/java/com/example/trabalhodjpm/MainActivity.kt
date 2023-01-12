@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.configButton.setOnClickListener(this)
         binding.addButton.setOnClickListener(this)
+        binding.subject.setOnClickListener(this)
 
         val id = firebaseAuth.currentUser?.uid.toString()
 
@@ -49,8 +50,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val longRest = it.child("longRest").value.toString().toInt()
                     val studyTime = it.child("studyTime").value.toString().toInt()
                     val name = it.child("name").value.toString()
+                    val noOfTomatos = it.child("noOfTomatos").value.toString().toInt()
 
-                    Controller.Companion.currUserSubjList.add(Subject(name, shortRest, longRest, studyTime, 0))
+                    Controller.Companion.currUserSubjList.add(Subject(name, shortRest, longRest, studyTime, noOfTomatos))
                     Controller.Companion.dropDownArray.add(name)
                 }
 
@@ -68,11 +70,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         //Código para o funcionamento do dropdown menu.
-        val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Controller.Companion.dropDownArray)
+        val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.select_dialog_item, Controller.Companion.dropDownArray)
         binding.dropdownMenu.adapter = arrayAdapter
         binding.dropdownMenu.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                Controller.Companion.currSubject = binding.dropdownMenu.selectedItem.toString()
+
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
@@ -80,7 +82,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
-        binding.subject.text = Controller.Companion.currSubject
+        if (Controller.Companion.currSubject != "") {
+            binding.subject.text = Controller.Companion.currSubject
+        }
     }
 
     override fun onClick(p0: View) {
@@ -90,6 +94,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         else if (p0.id == R.id.add_button) {
             var dialog = AddSubjectFragment()
             dialog.show(supportFragmentManager, "customDialog")
+        }
+        else if (p0.id == R.id.subject) {
+            Controller.Companion.currSubject = binding.dropdownMenu.selectedItem.toString()
         }
     }
 
