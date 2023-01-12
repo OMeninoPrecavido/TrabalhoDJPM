@@ -27,25 +27,25 @@
     <Spinner
         android:id="@+id/dropdown_menu"
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/timer"
         android:background="@color/white"
         android:textAlignment="center"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/subject"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Mobile"-->
-<!--        android:textSize="50dp"-->
-<!--        android:layout_margin="16dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/timer"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        android:textColor="@color/black"/>-->
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile"
+        android:textSize="50dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@id/dropdown_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/timer"

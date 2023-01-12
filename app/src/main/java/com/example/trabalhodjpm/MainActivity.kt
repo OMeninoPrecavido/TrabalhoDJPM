@@ -71,13 +71,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.dropdownMenu.adapter = arrayAdapter
         binding.dropdownMenu.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+                Controller.Companion.currSubject = binding.dropdownMenu.selectedItem.toString()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
 
         }
+
+        binding.subject.text = Controller.Companion.currSubject
     }
 
     override fun onClick(p0: View) {
