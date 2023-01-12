@@ -52,13 +52,13 @@ class SignInFragment : DialogFragment() {
                         val user = User(id)
                         database.child(id).setValue(user)
                     } else {
-                        Toast.makeText(this.activity, "1An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this.activity, "An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
                         dismiss()
                     }
                 }
             } else {
                 dismiss()
-                Toast.makeText(this.activity, "2An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.activity, "An error ocurred. Try again.", Toast.LENGTH_SHORT).show()
             }
         }
 

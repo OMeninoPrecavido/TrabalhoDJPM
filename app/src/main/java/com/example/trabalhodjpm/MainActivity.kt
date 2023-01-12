@@ -104,6 +104,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onFinish() {
+
+                Controller.Companion.currUserSubjList.forEach {
+                    if (it.name == Controller.Companion.currSubject) {
+                        it.noOfTomatos += 1
+                        var currNumTomatos = it.noOfTomatos
+                        database.child(id).child("subjectList").child("noOfTomatos").setValue(currNumTomatos)
+                    }
+                }
+
                 binding.timer.text = "Done!"
             }
 
