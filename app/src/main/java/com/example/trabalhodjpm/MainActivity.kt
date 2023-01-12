@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     //Inicializar variaveis do timer
     lateinit var timer: CountDownTimer
+    var time = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,9 +89,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
-<<<<<<< HEAD
+        binding.subject.text = Controller.Companion.currSubject
+
         //Processos do timer
-        val time = ObtainTime()
+        time = ObtainTime()
         timer = object : CountDownTimer(time.toLong(),  1_000){
             override fun onTick(remaining: Long) {
                 var tempoFormated = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(remaining), TimeUnit.MILLISECONDS.toSeconds(remaining) % TimeUnit.MINUTES.toSeconds(1))
@@ -105,18 +107,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun ObtainTime(): Long {
+    private fun ObtainTime(): Int {
         var tempo = 0
 
-        Controller.currUserSubjList.forEach{
-            if()
+        Controller.Companion.currUserSubjList.forEach{
+            if(it.name == Controller.Companion.currSubject){
+                tempo = it.studyTime
+            }
         }
+        tempo = TimeUnit.MINUTES.toMillis(tempo.toLong()).toInt()
 
-        return
-=======
-        binding.subject.text = Controller.Companion.currSubject
->>>>>>> new_changes
+        return tempo
     }
+
+
 
     override fun onClick(p0: View) {
         if (p0.id == R.id.config_button) {
@@ -126,8 +130,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             var dialog = AddSubjectFragment()
             dialog.show(supportFragmentManager, "customDialog")
         }else if(p0.id == R.id.button_start){
+            time = ObtainTime()
             timer.start()
-            println("ola")
         }else if(p0.id == R.id.button_end){
 
         }else if(p0.id == R.id.button_pause){
